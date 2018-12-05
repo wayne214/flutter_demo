@@ -65,6 +65,9 @@ class RandomWordsState extends State<RandomWords> {
         alreadySaved ? Icons.favorite : Icons.favorite_border,
         color: alreadySaved ? Colors.red : null,
       ),
+      /**
+       * 提示: 在Flutter的响应式风格的框架中，调用setState() 会为State对象触发build()方法，从而导致对UI的更新
+       * */
       onTap: () {
         setState(() {
           if (alreadySaved) {
@@ -81,6 +84,9 @@ class RandomWordsState extends State<RandomWords> {
     // TODO: implement build
 //    final wordPair = new WordPair.random();
 //    return new Text(wordPair.asPascalCase);
+  /**
+   * 提示: 某些widget属性需要单个widget（child），而其它一些属性，如action，需要一组widgets(children），用方括号[]表示
+   * */
   return new Scaffold(
     appBar: new AppBar(
       title: new Text('Startup Name Generator'),
@@ -95,6 +101,7 @@ class RandomWordsState extends State<RandomWords> {
 
 
   void _pushSaved() {
+//    添加Navigator.push调用，这会使路由入栈（以后路由入栈均指推入到导航管理器的栈）
     Navigator.of(context).push(
       new MaterialPageRoute(
           builder: (context) {
@@ -108,6 +115,7 @@ class RandomWordsState extends State<RandomWords> {
                   );
                 }
             );
+            // ListTile的divideTiles()方法在每个ListTile之间添加1像素的分割线。 该 divided 变量持有最终的列表项。
             final divided = ListTile
             .divideTiles(
               context: context,
