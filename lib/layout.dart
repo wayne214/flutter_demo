@@ -40,10 +40,10 @@ class LayoutPage extends StatelessWidget{
     );
 
     Color color = Theme.of(context).primaryColor;
-
+    // 三个按钮
     Widget buttonSection = Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 平均分配每一列占据的行空间
         children: <Widget>[
           _bulidButtonColumn(color, Icons.call, 'CALL'),
           _bulidButtonColumn(color, Icons.near_me, 'ROUTE'),
@@ -86,7 +86,7 @@ class LayoutPage extends StatelessWidget{
       )
     );
   }
-
+  // 构建统一按钮样式的方法
   Column _bulidButtonColumn(Color color, IconData icon, String label) {
     return Column(
       mainAxisSize: MainAxisSize.min,

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         // "hot reload" (press "r" in the console where you ran "flutter run",
         // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
         // counter didn't reset back to zero; the application is not restarted.
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
       ),
 //      home: MyHomePage(title: 'Flutter Demo Home Page'),
       home: new RandomWords()
@@ -96,7 +96,11 @@ class RandomWordsState extends State<RandomWords> {
 //    return new Text(wordPair.asPascalCase);
   /**
    * 提示: 某些widget属性需要单个widget（child），而其它一些属性，如action，需要一组widgets(children），用方括号[]表示
+   * Scaffold 是 Material library 中提供的一个widget, 它提供了默认的导航栏、标题和包含主屏幕widget树的body属性。widget树可以很复杂
    * */
+
+
+
   return new Scaffold(
     appBar: new AppBar(
       title: new Text('Startup Name Generator'),
@@ -132,7 +136,13 @@ class RandomWordsState extends State<RandomWords> {
               tiles: tiles,
             ).toList();
 
-            return LayoutPage();
+//            return LayoutPage();
+            return new Scaffold(
+              appBar: AppBar(
+                title: Text("Saved Suggestions"),
+              ),
+              body: ListView(children: divided,),
+            );
           }
       ),
     );
