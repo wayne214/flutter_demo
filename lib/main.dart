@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'layout.dart';
+import 'BottomNavigationBarDemo.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 //      home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: new RandomWords(),
+      home: new BottomNavigationBarDemo(),
       // 路由表
       routes: <String,WidgetBuilder> {
         'layout': (BuildContext context) => new LayoutPage()
