@@ -4,6 +4,10 @@ class LayoutPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    var args = ModalRoute.of(context).settings.arguments;
+    
+    
+    
     Widget titleSection = new Container(
       padding: const EdgeInsets.all(32.0),
       child: new Row(
@@ -65,26 +69,27 @@ class LayoutPage extends StatelessWidget{
       ),
     );
 
-    return MaterialApp(
-      title: 'Flutter layout demo',
-      home: Scaffold(
+    return  Scaffold(
         appBar: AppBar(
           title: Text('Flutter layout demo'),
         ),
         body: ListView(
           children: <Widget>[
-            Image.asset('images/lake.jpg',
-              width: 600,
-              height: 240,
-              fit: BoxFit.cover,
-            ),
+//            Image.asset('images/lake.jpg',
+//              width: 600,
+//              height: 240,
+//              fit: BoxFit.cover,
+//            ),
+            Image.network('https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes/images/lake.jpg'),
             titleSection,
             buttonSection,
-            textSection
+            textSection,
+            Container(
+              child: Text('路由获取参数：\n' + args),
+            )
           ],
         ),
-      )
-    );
+      );
   }
   // 构建统一按钮样式的方法
   Column _bulidButtonColumn(Color color, IconData icon, String label) {
@@ -93,6 +98,7 @@ class LayoutPage extends StatelessWidget{
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Icon(icon, color: color),
+      //    如果要添加填充，边距，边框或背景色，请使用Container来设置（译者语：只有容器有这些属性）
         Container(
           margin: const EdgeInsets.only(top: 8),
           child: Text(

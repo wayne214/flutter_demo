@@ -22,7 +22,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 //      home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: new RandomWords()
+      home: new RandomWords(),
+      // 路由表
+      routes: <String,WidgetBuilder> {
+        'layout': (BuildContext context) => new LayoutPage()
+      },
     );
   }
 }
@@ -115,36 +119,43 @@ class RandomWordsState extends State<RandomWords> {
 
 
   void _pushSaved() {
+    // 导航方式一
+    Navigator.pushNamed(context, 'layout', arguments: '这是main页面');
+  // 导航方式二
+//  Navigator.push(context, new MaterialPageRoute(builder: (context) {
+//    return LayoutPage();
+//  }));
+  // 导航方式三
 //    添加Navigator.push调用，这会使路由入栈（以后路由入栈均指推入到导航管理器的栈）
-    Navigator.of(context).push(
-      new MaterialPageRoute(
-          builder: (context) {
-            final tiles = _saved.map(
-                (pair) {
-                  return new ListTile(
-                    title: new Text(
-                      pair.asPascalCase,
-                      style: _biggerFont,
-                    ),
-                  );
-                }
-            );
-            // ListTile的divideTiles()方法在每个ListTile之间添加1像素的分割线。 该 divided 变量持有最终的列表项。
-            final divided = ListTile
-            .divideTiles(
-              context: context,
-              tiles: tiles,
-            ).toList();
-
-//            return LayoutPage();
-            return new Scaffold(
-              appBar: AppBar(
-                title: Text("Saved Suggestions"),
-              ),
-              body: ListView(children: divided,),
-            );
-          }
-      ),
-    );
+//    Navigator.of(context).push(
+//      new MaterialPageRoute(
+//          builder: (context) {
+//            final tiles = _saved.map(
+//                (pair) {
+//                  return new ListTile(
+//                    title: new Text(
+//                      pair.asPascalCase,
+//                      style: _biggerFont,
+//                    ),
+//                  );
+//                }
+//            );
+//            // ListTile的divideTiles()方法在每个ListTile之间添加1像素的分割线。 该 divided 变量持有最终的列表项。
+//            final divided = ListTile
+//            .divideTiles(
+//              context: context,
+//              tiles: tiles,
+//            ).toList();
+//
+////            return LayoutPage();
+//            return new Scaffold(
+//              appBar: AppBar(
+//                title: Text("Saved Suggestions"),
+//              ),
+//              body: ListView(children: divided,),
+//            );
+//          }
+//      ),
+//    );
   }
 }
