@@ -25,29 +25,29 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 //      home: MyHomePage(title: 'Flutter Demo Home Page'),
-//      home: new BottomAppBarDemo(),
-       home: new Center(
-         child: new FutureBuilder<Post>(
-           future: getHttp(),
-             builder: (context, snapshot) {
-               if(snapshot.hasData) {
-                 return new Text(snapshot.data.title);
-               }else if(snapshot.hasError) {
-                 return new Text("${snapshot.error}");
-               }
-               return new CircularProgressIndicator();
-             }
-         ),
-       ),
+      home: new BottomAppBarDemo(),
+//       home: new Center(
+//         child: new FutureBuilder<Post>(
+//           future: getHttp(),
+//             builder: (context, snapshot) {
+//               if(snapshot.hasData) {
+//                 return new Text(snapshot.data.title);
+//               }else if(snapshot.hasError) {
+//                 return new Text("${snapshot.error}");
+//               }
+//               return new CircularProgressIndicator();
+//             }
+//         ),
+//       ),
       // 路由表
-      routes: <String,WidgetBuilder> {
+      routes: <String, WidgetBuilder>{
         'layout': (BuildContext context) => new LayoutPage()
       },
     );
   }
 }
 
-class RandomWords extends StatefulWidget{
+class RandomWords extends StatefulWidget {
   @override
   createState() => new RandomWordsState();
 }
@@ -60,7 +60,7 @@ class RandomWordsState extends State<RandomWords> {
 
   final _biggerFont = const TextStyle(fontSize: 18.0);
 
-  Widget _buildSuggestions(){
+  Widget _buildSuggestions() {
     return new ListView.builder(
         padding: const EdgeInsets.all(16.0),
         // 对于每个建议的单词对都会调用一次itemBuilder，然后将单词对添加到ListTile行中
@@ -79,8 +79,7 @@ class RandomWordsState extends State<RandomWords> {
             _suggestions.addAll(generateWordPairs().take(10));
           }
           return _buildRow(_suggestions[index]);
-        }
-    );
+        });
   }
 
   Widget _buildRow(WordPair pair) {
@@ -109,39 +108,36 @@ class RandomWordsState extends State<RandomWords> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 //    final wordPair = new WordPair.random();
 //    return new Text(wordPair.asPascalCase);
-  /**
-   * 提示: 某些widget属性需要单个widget（child），而其它一些属性，如action，需要一组widgets(children），用方括号[]表示
-   * Scaffold 是 Material library 中提供的一个widget, 它提供了默认的导航栏、标题和包含主屏幕widget树的body属性。widget树可以很复杂
-   * */
+    /**
+     * 提示: 某些widget属性需要单个widget（child），而其它一些属性，如action，需要一组widgets(children），用方括号[]表示
+     * Scaffold 是 Material library 中提供的一个widget, 它提供了默认的导航栏、标题和包含主屏幕widget树的body属性。widget树可以很复杂
+     * */
 
-
-
-  return new Scaffold(
-    appBar: new AppBar(
-      title: new Text('Startup Name Generator'),
-      actions: <Widget>[
-        new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved)
-      ],
-    ),
-    body: _buildSuggestions(),
-  );
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Startup Name Generator'),
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved)
+        ],
+      ),
+      body: _buildSuggestions(),
+    );
   }
-
-
 
   void _pushSaved() {
     // 导航方式一
     Navigator.pushNamed(context, 'layout', arguments: '这是main页面');
-  // 导航方式二
+    // 导航方式二
 //  Navigator.push(context, new MaterialPageRoute(builder: (context) {
 //    return LayoutPage();
 //  }));
-  // 导航方式三
+    // 导航方式三
 //    添加Navigator.push调用，这会使路由入栈（以后路由入栈均指推入到导航管理器的栈）
 //    Navigator.of(context).push(
 //      new MaterialPageRoute(
