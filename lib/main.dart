@@ -3,6 +3,7 @@ import 'package:english_words/english_words.dart';
 import 'layout.dart';
 import 'BottomNavigationBarDemo.dart';
 import 'bottom_app_bar.dart';
+import 'Post.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,7 +25,20 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 //      home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: new BottomAppBarDemo(),
+//      home: new BottomAppBarDemo(),
+       home: new Center(
+         child: new FutureBuilder<Post>(
+           future: getHttp(),
+             builder: (context, snapshot) {
+               if(snapshot.hasData) {
+                 return new Text(snapshot.data.title);
+               }else if(snapshot.hasError) {
+                 return new Text("${snapshot.error}");
+               }
+               return new CircularProgressIndicator();
+             }
+         ),
+       ),
       // 路由表
       routes: <String,WidgetBuilder> {
         'layout': (BuildContext context) => new LayoutPage()

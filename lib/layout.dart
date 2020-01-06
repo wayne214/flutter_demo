@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'FavoriteWidget.dart';
 
 class LayoutPage extends StatelessWidget{
   @override
@@ -34,11 +35,12 @@ class LayoutPage extends StatelessWidget{
                 ],
               )
           ),
-          new Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          new Text('41')
+//          new Icon(
+//            Icons.star,
+//            color: Colors.red[500],
+//          ),
+//          new Text('41')
+          new FavoriteWidget(),
         ],
       )
     );
@@ -75,12 +77,12 @@ class LayoutPage extends StatelessWidget{
         ),
         body: ListView(
           children: <Widget>[
-//            Image.asset('images/lake.jpg',
-//              width: 600,
-//              height: 240,
-//              fit: BoxFit.cover,
-//            ),
-            Image.network('https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes/images/lake.jpg'),
+            Image.asset('images/lake.jpg',
+              width: 600,
+              height: 240,
+              fit: BoxFit.cover,
+            ),
+//            Image.network('https://raw.githubusercontent.com/flutter/website/master/_includes/code/layout/lakes/images/lake.jpg'),
             titleSection,
             buttonSection,
             textSection,
