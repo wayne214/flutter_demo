@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'layout.dart';
+import 'main.dart';
 
 class PageHome extends StatefulWidget {
   String _title;
@@ -16,12 +18,13 @@ class _PageHomeState extends State<PageHome> {
       appBar: AppBar(
         title: Text(widget._title),
       ),
-      body: Center(
-        child: Text(
-          '${widget._title}内容',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+//      body: Center(
+//        child: Text(
+//          '${widget._title}内容',
+//          style: TextStyle(fontSize: 20),
+//        ),
+//      ),
+    body: new RandomWords()
     );
   }
 }
