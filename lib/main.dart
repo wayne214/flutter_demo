@@ -4,6 +4,13 @@ import 'layout.dart';
 import 'BottomNavigationBarDemo.dart';
 import 'bottom_app_bar.dart';
 import 'Post.dart';
+import 'package:provider/provider.dart';
+
+import 'package:flutter_app/shop_provider/models/cart.dart';
+import 'package:flutter_app/shop_provider/models/catalog.dart';
+import 'package:flutter_app/shop_provider/screens/cart.dart';
+import 'package:flutter_app/shop_provider/screens/catalog.dart';
+import 'package:flutter_app/shop_provider/screens/login.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,39 +18,63 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
-        primarySwatch: Colors.blue,
+
+    return MultiProvider(
+      providers: [
+        Provider(create: (context)=> CatalogModel()),
+        ChangeNotifierProxyProvider<CatalogModel, CartModel>(
+          create: (context)=> CartModel(),
+          update: (context, catalog, cart){
+            cart.catalog = catalog;
+            return cart;
+          },
+        )
+      ],
+      child: MaterialApp(
+        title: 'Provider Demo',
+        initialRoute: '/',
+        routes: {
+          '/': (context) => MyLogin(),
+          '/catalog': (context)=> MyCatalog(),
+          '/cart': (context)=> MyCart()
+        },
       ),
-//      home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: new BottomAppBarDemo(),
-//       home: new Center(
-//         child: new FutureBuilder<Post>(
-//           future: getHttp(),
-//             builder: (context, snapshot) {
-//               if(snapshot.hasData) {
-//                 return new Text(snapshot.data.title);
-//               }else if(snapshot.hasError) {
-//                 return new Text("${snapshot.error}");
-//               }
-//               return new CircularProgressIndicator();
-//             }
-//         ),
-//       ),
-      // 路由表
-      routes: <String, WidgetBuilder>{
-        'layout': (BuildContext context) => new LayoutPage()
-      },
     );
+
+
+//    return MaterialApp(
+//      title: 'Flutter Demo',
+//      theme: ThemeData(
+//        // This is the theme of your application.
+//        //
+//        // Try running your application with "flutter run". You'll see the
+//        // application has a blue toolbar. Then, without quitting the app, try
+//        // changing the primarySwatch below to Colors.green and then invoke
+//        // "hot reload" (press "r" in the console where you ran "flutter run",
+//        // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
+//        // counter didn't reset back to zero; the application is not restarted.
+//        primarySwatch: Colors.blue,
+//      ),
+////      home: MyHomePage(title: 'Flutter Demo Home Page'),
+//      home: new BottomAppBarDemo(),
+////       home: new Center(
+////         child: new FutureBuilder<Post>(
+////           future: getHttp(),
+////             builder: (context, snapshot) {
+////               if(snapshot.hasData) {
+////                 return new Text(snapshot.data.title);
+////               }else if(snapshot.hasError) {
+////                 return new Text("${snapshot.error}");
+////               }
+////               return new CircularProgressIndicator();
+////             }
+////         ),
+////       ),
+//      // 路由表
+//      routes: <String, WidgetBuilder>{
+//        'layout': (BuildContext context) => new LayoutPage()
+//      },
+//    );
   }
 }
 
