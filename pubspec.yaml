@@ -23,6 +23,7 @@ dependencies:
   http: ^0.12.0
   dio: ^3.0.8
   provider: ^3.0.0
+  fish_redux: ^0.3.7
 dev_dependencies:
   flutter_test:
     sdk: flutter
