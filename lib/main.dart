@@ -1,5 +1,11 @@
+import 'dart:io';
+
+import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_app/fish_redux_demo/fist_page/page.dart';
+import 'package:flutter_app/fish_redux_demo/second_page/page.dart';
 import 'layout.dart';
 import 'BottomNavigationBarDemo.dart';
 import 'bottom_app_bar.dart';
@@ -12,7 +18,34 @@ import 'package:flutter_app/shop_provider/screens/cart.dart';
 import 'package:flutter_app/shop_provider/screens/catalog.dart';
 import 'package:flutter_app/shop_provider/screens/login.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(createApp());
+
+Widget createApp(){
+  final AbstractRoutes routes = PageRoutes(pages: {
+    'first_page': FirstPagePage(),
+    'second_page': SecondPage(),
+  });
+
+  if (Platform.isAndroid) {
+    // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前MaterialApp组件会覆盖掉这个值。
+    SystemUiOverlayStyle systemUiOverlayStyle =
+    SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  }
+
+  return MaterialApp(
+    title: 'fish_redux',
+    theme: ThemeData(
+      primarySwatch: Colors.blue,
+    ),
+    home: routes.buildPage("first_page", null),
+    onGenerateRoute: (RouteSettings settings){
+      return MaterialPageRoute<Object>(builder: (BuildContext context){
+        return routes.buildPage(settings.name, settings.arguments);
+      });
+    },
+  );
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

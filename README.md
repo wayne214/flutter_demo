@@ -19,4 +19,5 @@ For help getting started with Flutter, view our online
 
 
 ## 第三方
-[intl](https://pub.dev/packages/intl) 时间格式化
+- [intl](https://pub.dev/packages/intl) 时间格式化
+- [fish_redux](https://pub.dev/packages/fish_redux) 状态数据流管理
