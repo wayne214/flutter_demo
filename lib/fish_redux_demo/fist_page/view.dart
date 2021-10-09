@@ -25,6 +25,7 @@ Widget _bodyWidget(FirstPageState state, Dispatch dispatch){
     floatingActionButton: FloatingActionButton(
       onPressed: (){
         // 跳转第二个页面
+        dispatch(FirstPageActionCreator.toSecond());
       },
       child: Icon(Icons.arrow_forward),
     ),

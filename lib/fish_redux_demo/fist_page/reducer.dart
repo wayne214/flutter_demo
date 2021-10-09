@@ -6,12 +6,13 @@ import 'state.dart';
 Reducer<FirstPageState> buildReducer() {
   return asReducer(
     <Object, Reducer<FirstPageState>>{
-      FirstPageAction.action: _onAction,
+      FirstPageAction.updateMsg: _onUpdateMsg,
     },
   );
 }
 
-FirstPageState _onAction(FirstPageState state, Action action) {
+FirstPageState _onUpdateMsg(FirstPageState state, Action action) {
   final FirstPageState newState = state.clone();
+  newState.msg = action.payload;
   return newState;
 }
