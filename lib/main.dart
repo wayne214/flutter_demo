@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/fish_redux_demo/fist_page/page.dart';
+import 'package:flutter_app/fish_redux_demo/list_page/page.dart';
 import 'package:flutter_app/fish_redux_demo/second_page/page.dart';
 import 'layout.dart';
 import 'BottomNavigationBarDemo.dart';
@@ -24,6 +25,7 @@ Widget createApp(){
   final AbstractRoutes routes = PageRoutes(pages: {
     'first_page': FirstPagePage(),
     'second_page': SecondPage(),
+    'list_page': ListPage(),
   });
 
   if (Platform.isAndroid) {
@@ -38,7 +40,7 @@ Widget createApp(){
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
-    home: routes.buildPage("first_page", null),
+    home: routes.buildPage("list_page", null),
     onGenerateRoute: (RouteSettings settings){
       return MaterialPageRoute<Object>(builder: (BuildContext context){
         return routes.buildPage(settings.name, settings.arguments);
