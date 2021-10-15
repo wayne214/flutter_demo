@@ -21,3 +21,4 @@ For help getting started with Flutter, view our online
 ## 第三方
 - [intl](https://pub.dev/packages/intl) 时间格式化
 - [fish_redux](https://pub.dev/packages/fish_redux) 状态数据流管理
+- [shared_preferences](https://pub.flutter-io.cn/packages/shared_preferences) 简单数据存储
